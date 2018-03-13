@@ -41,7 +41,7 @@ class Index extends Component {
                     {this.state.active === "kunde" ? Kunde() : null}
                     {this.state.active === "lieferant" ? Lieferant() : null}
                     {this.state.active === "wein" ? Wein() : null}
-                    <Grid.Column width={12}/>
+                    <Grid.Column width={12} />
                     <Grid.Column width={4}>
                       <Button primary style={{ width: "100%" }}>
                         Anlegen
@@ -64,11 +64,65 @@ class Index extends Component {
 
 export default Index;
 
+const Wein = () => {
+  return (
+    <Fragment>
+      <Grid.Column width={8} stretched>
+        {WeinAnlegen()}
+      </Grid.Column>
+      <Grid.Column width={8} stretched>
+        {HerstellerWein()}
+      </Grid.Column>
+    </Fragment>
+  );
+};
 
-const Wein = () =>
-{
-
-}
+const WeinAnlegen = () => {
+  return (
+    <Segment>
+      <h2> Weindaten </h2>
+      <Form>
+        <Form.Field>
+          <label>Name</label>
+          <input placeholder="Name" />
+        </Form.Field>
+        <Form.Group widths="equal">
+          <Form.Field>
+            <label>Jahrgang</label>
+            <input placeholder="Jahrgang" />
+          </Form.Field>
+          <Form.Field>
+            <label>Herkunft</label>
+            <input placeholder="Herkunft" />
+          </Form.Field>
+        </Form.Group>
+        <Form.Group widths="equal">
+          <Form.Field>
+            <label>Alkoholgehalt</label>
+            <input placeholder="Alkoholgehalt" />
+          </Form.Field>
+          <Form.Field>
+            <label>Preis</label>
+            <input placeholder="Preis" />
+          </Form.Field>
+        </Form.Group>
+      </Form>
+    </Segment>
+  );
+};
+const HerstellerWein = () => {
+  return (
+    <Segment>
+      <h2> Hersteller </h2>
+      <Form>
+        <Form.Field>
+          <label>Name</label>
+          <input placeholder="Name" />
+        </Form.Field>
+      </Form>
+    </Segment>
+  );
+};
 
 const Lieferant = () => {
   return (
@@ -129,12 +183,7 @@ const PersonalDaten = () => {
         <Form.Group>
           <Form.Field width={6}>
             <label>Anrede</label>
-            <Dropdown
-              placeholder="Anrede"
-              fluid
-              selection
-              options={anrede}
-            />
+            <Dropdown placeholder="Anrede" fluid selection options={anrede} />
           </Form.Field>
           <Form.Field width={10}>
             <label>Alter</label>
