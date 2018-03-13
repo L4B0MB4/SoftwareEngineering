@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Grid, Menu, Segment, Form, Button, Dropdown } from "semantic-ui-react";
 import Layout from "./Layout";
 
@@ -33,8 +33,24 @@ class Index extends Component {
               />
             </Menu>
           </Grid.Column>
-          <Grid.Column stretched width={12} >
-          {this.state.active === "kunde" ? Kunde() : null}
+          <Grid.Column stretched width={12}>
+            <Grid>
+              <Grid.Row>
+                <Grid.Column width={12}>
+                  <Grid>
+                    {this.state.active === "kunde" ? Kunde() : null}
+                    {this.state.active === "lieferant" ? Lieferant() : null}
+                    {this.state.active === "wein" ? Wein() : null}
+                    <Grid.Column width={12}/>
+                    <Grid.Column width={4}>
+                      <Button primary style={{ width: "100%" }}>
+                        Anlegen
+                      </Button>
+                    </Grid.Column>
+                  </Grid>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
           </Grid.Column>
         </Grid>
       </Layout>
@@ -48,28 +64,51 @@ class Index extends Component {
 
 export default Index;
 
+
+const Wein = () =>
+{
+
+}
+
+const Lieferant = () => {
+  return (
+    <Fragment>
+      <Grid.Column width={8} stretched>
+        {PersonalDaten()}
+      </Grid.Column>
+      <Grid.Column width={8} stretched>
+        {AdressDaten()}
+        {LieferantenNummer()}
+      </Grid.Column>
+    </Fragment>
+  );
+};
+
+const LieferantenNummer = () => {
+  return (
+    <Segment>
+      <h2> Lieferant </h2>
+      <Form>
+        <Form.Field>
+          <label>Lieferantennummer</label>
+          <input placeholder="Lieferantennummer" />
+        </Form.Field>
+      </Form>
+    </Segment>
+  );
+};
+
 const Kunde = () => {
   return (
-    <Grid>
-      <Grid.Row>
-        <Grid.Column width={8} stretched>
-          {PersonalDaten()}
-        </Grid.Column>
-        <Grid.Column width={8} stretched>
-          {AdressDaten()}
-          {WeinDaten()}
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <Grid.Column width={12} />
-        <Grid.Column width={4}>
-          <Button primary style={{ width: "100%" }}>
-            {" "}
-            Anlegen{" "}
-          </Button>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+    <Fragment>
+      <Grid.Column width={8} stretched>
+        {PersonalDaten()}
+      </Grid.Column>
+      <Grid.Column width={8} stretched>
+        {AdressDaten()}
+        {WeinDaten()}
+      </Grid.Column>
+    </Fragment>
   );
 };
 
@@ -91,7 +130,7 @@ const PersonalDaten = () => {
           <Form.Field width={6}>
             <label>Anrede</label>
             <Dropdown
-              placeholder="Anrede auswählen"
+              placeholder="Anrede"
               fluid
               selection
               options={anrede}
@@ -154,7 +193,7 @@ const WeinDaten = () => {
         <Form.Field>
           <label>Lieblingsweine</label>
           <Dropdown
-            placeholder="Lieblingsweine auswählen"
+            placeholder="Lieblingsweine"
             fluid
             selection
             options={anrede}
