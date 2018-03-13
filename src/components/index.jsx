@@ -41,7 +41,12 @@ class Index extends Component {
                     {this.state.active === "kunde" ? Kunde() : null}
                     {this.state.active === "lieferant" ? Lieferant() : null}
                     {this.state.active === "wein" ? Wein() : null}
-                    <Grid.Column width={12} />
+                    <Grid.Column width={4}>
+                      <Button color="red" style={{ width: "100%" }}>
+                        Löschen
+                      </Button>
+                    </Grid.Column>
+                    <Grid.Column width={8} />
                     <Grid.Column width={4}>
                       <Button primary style={{ width: "100%" }}>
                         Anlegen
