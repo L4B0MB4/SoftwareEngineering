@@ -45,7 +45,10 @@ const Header = props => {
           <Link to="/">Anlegen</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to="/">Suche</Link>
+          <Link to="/search">Suche</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/dialoge">Dialoge</Link>
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>

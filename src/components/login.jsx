@@ -6,28 +6,6 @@ class Login extends Component {
   render() {
     return (
       <Layout>
-        <Card
-          style={{
-            backgroundColor: "#e54747",
-            position: "fixed",
-            top: "10px",
-            right: "10px",
-            zIndex: "10000"
-          }}
-        >
-          <Card.Content>
-            <Card.Header style={{ color: "whitesmoke" }}>
-              Login Fehlgeschlagen
-            </Card.Header>
-            <Card.Description style={{ color: "whitesmoke" }}>
-              Falscher Benutzername oder falsches Passwort
-            </Card.Description>
-            <Card.Content extra>
-            <br/>
-              <Button >Schließen</Button>
-            </Card.Content>
-          </Card.Content>
-        </Card>
         <Segment raised>
           <Form>
             <Form.Field>
