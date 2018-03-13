@@ -1,6 +1,15 @@
 import React, { Component, Fragment } from "react";
-import { Grid, Menu, Segment, Form, Button, Dropdown, Checkbox } from "semantic-ui-react";
+import {
+  Grid,
+  Menu,
+  Segment,
+  Form,
+  Button,
+  Dropdown,
+  Checkbox
+} from "semantic-ui-react";
 import Layout from "./Layout";
+import Lieferschein from "./Lieferschein";
 
 class Index extends Component {
   constructor(props) {
@@ -32,6 +41,11 @@ class Index extends Component {
                 onClick={() => this.onClick("lieferant")}
               />
               <Menu.Item
+                name="Lieferschein"
+                active={this.state.active === "lieferschein"}
+                onClick={() => this.onClick("lieferschein")}
+              />
+              <Menu.Item
                 name="Benutzer"
                 active={this.state.active === "benutzer"}
                 onClick={() => this.onClick("benutzer")}
@@ -47,17 +61,24 @@ class Index extends Component {
                     {this.state.active === "lieferant" ? Lieferant() : null}
                     {this.state.active === "wein" ? Wein() : null}
                     {this.state.active === "benutzer" ? Benutzer() : null}
-                    <Grid.Column width={4}>
-                      <Button color="red" style={{ width: "100%" }}>
-                        Löschen
-                      </Button>
-                    </Grid.Column>
-                    <Grid.Column width={8} />
-                    <Grid.Column width={4}>
-                      <Button primary style={{ width: "100%" }}>
-                        Anlegen
-                      </Button>
-                    </Grid.Column>
+                    {this.state.active === "lieferschein" ? (
+                      <Lieferschein />
+                    ) : null}
+                    {this.state.active !== "lieferschein" ? (
+                      <Grid.Row>
+                        <Grid.Column width={4}>
+                          <Button color="red" style={{ width: "100%" }}>
+                            Löschen
+                          </Button>
+                        </Grid.Column>
+                        <Grid.Column width={8} />
+                        <Grid.Column width={4}>
+                          <Button primary style={{ width: "100%" }}>
+                            Anlegen
+                          </Button>
+                        </Grid.Column>
+                      </Grid.Row>
+                    ) : null}
                   </Grid>
                 </Grid.Column>
               </Grid.Row>
@@ -94,7 +115,13 @@ const BenutzerRechte = () => {
       <h2> Benutzerrechte </h2>
       <Form>
         <Form.Field>
-        <Checkbox label={<label><b>Ist Admin</b></label>} />
+          <Checkbox
+            label={
+              <label>
+                <b>Ist Admin</b>
+              </label>
+            }
+          />
         </Form.Field>
       </Form>
     </Segment>
