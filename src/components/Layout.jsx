@@ -23,11 +23,11 @@ class Layout extends Component {
       <br/>
         <Grid>
           <Grid.Row>
-            <Grid.Column mobile={1} computer={3} />
-            <Grid.Column mobile={14} computer={10}>
+            <Grid.Column mobile={1} computer={2} />
+            <Grid.Column mobile={14} computer={12}>
               {this.props.children}
             </Grid.Column>
-            <Grid.Column mobile={1} computer={3} />
+            <Grid.Column mobile={1} computer={2} />
           </Grid.Row>
         </Grid>
       </Container>
