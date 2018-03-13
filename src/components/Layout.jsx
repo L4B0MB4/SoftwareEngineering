@@ -21,6 +21,7 @@ class Layout extends Component {
       <br/>
       <br/>
       <br/>
+      <br/>
         <Grid>
           <Grid.Row>
             <Grid.Column mobile={1} computer={2} />
@@ -39,7 +40,10 @@ const Header = (props) => {
    const {activeItem} = props;
   return (
     <div>
-      <Menu inverted fixed="top">
+      <Menu inverted fixed="top" size="huge">
+        <Menu.Item>
+          <img src='./logo.png' /> SemsaKrebsler
+        </Menu.Item>
         <Menu.Item
           name="Hauptseite"
           active={activeItem === "home"}
