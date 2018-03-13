@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Grid, Menu, Segment, Form, Button, Dropdown } from "semantic-ui-react";
+import { Grid, Menu, Segment, Form, Button, Dropdown, Checkbox } from "semantic-ui-react";
 import Layout from "./Layout";
 
 class Index extends Component {
@@ -31,6 +31,11 @@ class Index extends Component {
                 active={this.state.active === "lieferant"}
                 onClick={() => this.onClick("lieferant")}
               />
+              <Menu.Item
+                name="Benutzer"
+                active={this.state.active === "benutzer"}
+                onClick={() => this.onClick("benutzer")}
+              />
             </Menu>
           </Grid.Column>
           <Grid.Column stretched width={12}>
@@ -41,6 +46,7 @@ class Index extends Component {
                     {this.state.active === "kunde" ? Kunde() : null}
                     {this.state.active === "lieferant" ? Lieferant() : null}
                     {this.state.active === "wein" ? Wein() : null}
+                    {this.state.active === "benutzer" ? Benutzer() : null}
                     <Grid.Column width={4}>
                       <Button color="red" style={{ width: "100%" }}>
                         Löschen
@@ -68,6 +74,50 @@ class Index extends Component {
 }
 
 export default Index;
+
+const Benutzer = () => {
+  return (
+    <Fragment>
+      <Grid.Column width={8} stretched>
+        {BenutzerDaten()}
+      </Grid.Column>
+      <Grid.Column width={8} stretched>
+        {BenutzerRechte()}
+      </Grid.Column>
+    </Fragment>
+  );
+};
+
+const BenutzerRechte = () => {
+  return (
+    <Segment>
+      <h2> Benutzerrechte </h2>
+      <Form>
+        <Form.Field>
+        <Checkbox label={<label><b>Ist Admin</b></label>} />
+        </Form.Field>
+      </Form>
+    </Segment>
+  );
+};
+
+const BenutzerDaten = () => {
+  return (
+    <Segment>
+      <h2> Benutzerdaten </h2>
+      <Form>
+        <Form.Field>
+          <label>Benutzername</label>
+          <input placeholder="Benutzername" />
+        </Form.Field>
+        <Form.Field>
+          <label>Passwort</label>
+          <input placeholder="Passwort" type="password" />
+        </Form.Field>
+      </Form>
+    </Segment>
+  );
+};
 
 const Wein = () => {
   return (
