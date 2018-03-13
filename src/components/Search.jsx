@@ -14,6 +14,11 @@ class Search extends Component {
           />
         </Segment>
         <Segment>
+          <b>Entsprechend für Kunden und Lieferanten Suche!</b>
+          <br />
+          <br />
+          <br />
+          <Divider />
           <Feed size="large">
             <Feed.Event>
               <Feed.Label>
@@ -21,11 +26,13 @@ class Search extends Component {
               </Feed.Label>
               <Feed.Content>
                 <Feed.Summary>
-                  Wein A
-                  <Feed.Date>im Handel seit 2001</Feed.Date>
+                  <p>Wein A</p>
+                  <p>Preis: 22.15 €</p>
+                  <p>Herunft: Italien </p>
+                  <p>Jahrgang: 1982 </p>
                 </Feed.Summary>
                 <Feed.Extra>
-                    Bei Hersteller XYZ
+                  <p>Bei Hersteller XYZ</p>
                 </Feed.Extra>
               </Feed.Content>
             </Feed.Event>
@@ -34,11 +41,13 @@ class Search extends Component {
               <Feed.Label image="http://www.lampari.de/wp-content/uploads/2013/09/Fotolia_49334423_M.jpg" />
               <Feed.Content>
                 <Feed.Summary>
-                  Wein B
-                  <Feed.Date>im Handel seit 2013</Feed.Date>
+                  <p>Wein B</p>
+                  <p>Preis: 13.20 €</p>
+                  <p>Herunft: Frankreich </p>
+                  <p>Jahrgang: 1992 </p>
                 </Feed.Summary>
                 <Feed.Extra>
-                    Bei Hersteller XYZ
+                  <p>Bei Hersteller XYZ</p>
                 </Feed.Extra>
               </Feed.Content>
             </Feed.Event>
@@ -47,11 +56,13 @@ class Search extends Component {
               <Feed.Label image="http://www.lampari.de/wp-content/uploads/2013/09/Fotolia_49334423_M.jpg" />
               <Feed.Content>
                 <Feed.Summary>
-                  Wein C
-                  <Feed.Date>im Handel seit 1992</Feed.Date>
+                  <p>Wein C</p>
+                  <p>Preis: 113.20 €</p>
+                  <p>Herunft: Frankreich </p>
+                  <p>Jahrgang: 2011 </p>
                 </Feed.Summary>
                 <Feed.Extra>
-                    Bei Hersteller WWA
+                  <p>Bei Hersteller WWA</p>
                 </Feed.Extra>
               </Feed.Content>
             </Feed.Event>
