@@ -58,6 +58,10 @@ export default class Verkauf extends Component {
                   <Input placeholder="Name" value="12,35€" />
                 </Form.Field>
               </Form.Group>
+                <Form.Field>
+                  <label>Anzahl</label>
+                  <Input placeholder="Name" value="7" />
+                </Form.Field>
               <Form.Field>
                 <div style={{ textAlign: "right" }}>
                   <Button primary>Hinzufügen</Button>
