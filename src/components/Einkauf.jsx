@@ -9,14 +9,13 @@ import {
   Divider
 } from "semantic-ui-react";
 
-export default class Lieferschein extends Component {
+export default class Einkasuf extends Component {
   render() {
     return (
       <Fragment>
-        <Grid.Column width={16} stretched />
         <Grid.Column width={16} stretched>
           <Segment>
-            <h2>Lieferschein</h2>
+            <h2>Einkauf</h2>
             <Form>
               <Form.Field>
                 <label>Lieferantenkürzel</label>

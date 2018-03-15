@@ -9,8 +9,8 @@ import {
   Checkbox
 } from "semantic-ui-react";
 import Layout from "./Layout";
-import Lieferschein from "./Lieferschein";
-import Bestellung from "./Bestellung"
+import Verkauf from "./Verkauf";
+import Einkauf from "./Einkauf"
 
 class Index extends Component {
   constructor(props) {
@@ -42,14 +42,14 @@ class Index extends Component {
                 onClick={() => this.onClick("lieferant")}
               />
               <Menu.Item
-                name="Lieferschein"
-                active={this.state.active === "lieferschein"}
-                onClick={() => this.onClick("lieferschein")}
+                name="Verkauf"
+                active={this.state.active === "verkauf"}
+                onClick={() => this.onClick("verkauf")}
               />
               <Menu.Item
-                name="Bestellung"
-                active={this.state.active === "bestellung"}
-                onClick={() => this.onClick("bestellung")}
+                name="Einkauf"
+                active={this.state.active === "einkauf"}
+                onClick={() => this.onClick("einkauf")}
               />
               <Menu.Item
                 name="Benutzer"
@@ -67,13 +67,13 @@ class Index extends Component {
                     {this.state.active === "lieferant" ? Lieferant() : null}
                     {this.state.active === "wein" ? Wein() : null}
                     {this.state.active === "benutzer" ? Benutzer() : null}
-                    {this.state.active === "lieferschein" ? (
-                      <Lieferschein />
+                    {this.state.active === "verkauf" ? (
+                      <Verkauf />
                     ) : null}
-                    {this.state.active === "bestellung" ? (
-                      <Bestellung />
+                    {this.state.active === "einkauf" ? (
+                      <Einkauf />
                     ) : null}
-                    {(this.state.active !== "lieferschein" && this.state.active !== "bestellung") ? (
+                    {(this.state.active !== "verkauf" && this.state.active !== "verkauf") ? (
                       <Grid.Row>
                         <Grid.Column width={4}>
                         </Grid.Column>

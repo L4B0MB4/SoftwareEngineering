@@ -1,40 +1,48 @@
 import React, { Component, Fragment } from "react";
-import { Segment, Statistic, Grid, Form, Input, Button, Divider } from "semantic-ui-react";
+import {
+  Segment,
+  Statistic,
+  Grid,
+  Form,
+  Input,
+  Button,
+  Divider
+} from "semantic-ui-react";
 
-export default class Bestellung extends Component {
+export default class Verkauf extends Component {
   render() {
     return (
       <Fragment>
         <Grid.Column width={16} stretched>
-        <Segment>
-            <h2>Bestellung</h2>
+          <Segment>
+            <h2>Verkauf</h2>
             <Form textAlign="left">
               <Form.Field>
                 <label>Vorname</label>
-                <input placeholder="Vorname"/>
+                <input placeholder="Vorname" />
               </Form.Field>
               <Form.Field>
                 <label>Nachname</label>
-                <input placeholder="Nachname"/>
+                <input placeholder="Nachname" />
               </Form.Field>
               <Form.Field>
                 <label>Lieferdatum</label>
-                <input type="date" placeholder="Lieferdatum"/>
+                <input type="date" placeholder="Lieferdatum" />
               </Form.Field>
             </Form>
           </Segment>
           <Segment>
-          <Form>
-            <Form.Field>
-              <label>Wein suchen</label>
-              <Input icon="search" placeholder="Search..." />
-            </Form.Field>
-          </Form>
-          <br/>
-          <br/>
-          <Divider horizontal>Oder</Divider>
-          <br/>
-          <br/>
+            <Form>
+              <Form.Field>
+                <label>Wein suchen</label>
+                <Input icon="search" placeholder="Search..." />
+              </Form.Field>
+            </Form>
+            <br />
+            <br />
+            <Divider horizontal>Oder</Divider>
+            <br />
+            <br />
             <Form>
               <Form.Field>
                 <label>Name</label>
@@ -66,8 +74,8 @@ export default class Bestellung extends Component {
             <span style={{ fontSize: "150%" }}>
               <label> Gesamtpreis </label> 100,30€
             </span>
-            <br/>
-            <br/>
+            <br />
+            <br />
             <Form>
               <Form.Field style={{ textAlign: "right" }}>
                 <Button primary>Bestellen</Button>
@@ -87,7 +95,7 @@ const Wein = (name, jahrgang, preis) => {
         <h2> Wein: {name}</h2>
         <h3> Jahrgang: {jahrgang}</h3>
         <h4 style={{ textAlign: "right" }}> Preis: {preis} € </h4>
-        <br/>
+        <br />
         <Button color="red"> Löschen </Button>
       </Segment>
     </Grid.Column>
