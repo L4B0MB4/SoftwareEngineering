@@ -19,8 +19,8 @@ export default class Lieferschein extends Component {
             <h2>Lieferschein</h2>
             <Form>
               <Form.Field>
-                <label>Lieferantenname</label>
-                <input placeholder="Lieferantenname" />
+                <label>Lieferantenkürzel</label>
+                <input placeholder="Lieferantenkürzel" />
               </Form.Field>
               <Form.Field>
                 <label>Lieferdatum</label>

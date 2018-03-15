@@ -232,8 +232,8 @@ const LieferantenNummer = () => {
       <h2> Lieferant </h2>
       <Form>
         <Form.Field>
-          <label>Lieferantennummer</label>
-          <input placeholder="Lieferantennummer" />
+          <label>Lieferantenkürzel</label>
+          <input placeholder="Lieferantenkürzel" />
         </Form.Field>
       </Form>
     </Segment>
