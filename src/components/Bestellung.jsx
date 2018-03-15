@@ -51,7 +51,9 @@ export default class Bestellung extends Component {
                 </Form.Field>
               </Form.Group>
               <Form.Field>
-                <Button primary>Hinzufügen</Button>
+                <div style={{ textAlign: "right" }}>
+                  <Button primary>Hinzufügen</Button>
+                </div>
               </Form.Field>
             </Form>
           </Segment>

@@ -13,15 +13,14 @@ export default class Lieferschein extends Component {
   render() {
     return (
       <Fragment>
-        <Grid.Column width={16} stretched>
-        </Grid.Column>
+        <Grid.Column width={16} stretched />
         <Grid.Column width={16} stretched>
           <Segment>
             <h2>Lieferschein</h2>
-            <Form >
+            <Form>
               <Form.Field>
                 <label>Lieferantenname</label>
-                <input placeholder="Lieferantenname"/>
+                <input placeholder="Lieferantenname" />
               </Form.Field>
               <Form.Field>
                 <label>Lieferdatum</label>
@@ -30,17 +29,17 @@ export default class Lieferschein extends Component {
             </Form>
           </Segment>
           <Segment>
-          <Form>
-            <Form.Field>
-              <label>Wein suchen</label>
-              <Input icon="search" placeholder="Search..." />
-            </Form.Field>
-          </Form>
-          <br/>
-          <br/>
-          <Divider horizontal>Oder</Divider>
-          <br/>
-          <br/>
+            <Form>
+              <Form.Field>
+                <label>Wein suchen</label>
+                <Input icon="search" placeholder="Search..." />
+              </Form.Field>
+            </Form>
+            <br />
+            <br />
+            <Divider horizontal>Oder</Divider>
+            <br />
+            <br />
             <Form>
               <Form.Field>
                 <label>Name</label>
@@ -57,7 +56,9 @@ export default class Lieferschein extends Component {
                 </Form.Field>
               </Form.Group>
               <Form.Field>
-                <Button primary>Hinzufügen</Button>
+                <div style={{ textAlign: "right" }}>
+                  <Button primary>Hinzufügen</Button>
+                </div>
               </Form.Field>
             </Form>
           </Segment>
