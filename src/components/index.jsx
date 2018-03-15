@@ -314,7 +314,7 @@ const AdressDaten = () => {
         </Form.Group>
         <Form.Field>
           <label>Straße und Hausnummer</label>
-          <input placeholder="Vorwahl" />
+          <input placeholder="Straße und Hausnummer" />
         </Form.Field>
       </Form>
     </Segment>
