@@ -10,6 +10,7 @@ import {
 } from "semantic-ui-react";
 import Layout from "./Layout";
 import Lieferschein from "./Lieferschein";
+import Bestellung from "./Bestellung"
 
 class Index extends Component {
   constructor(props) {
@@ -46,6 +47,11 @@ class Index extends Component {
                 onClick={() => this.onClick("lieferschein")}
               />
               <Menu.Item
+                name="Bestellung"
+                active={this.state.active === "bestellung"}
+                onClick={() => this.onClick("bestellung")}
+              />
+              <Menu.Item
                 name="Benutzer"
                 active={this.state.active === "benutzer"}
                 onClick={() => this.onClick("benutzer")}
@@ -64,12 +70,12 @@ class Index extends Component {
                     {this.state.active === "lieferschein" ? (
                       <Lieferschein />
                     ) : null}
-                    {this.state.active !== "lieferschein" ? (
+                    {this.state.active === "bestellung" ? (
+                      <Bestellung />
+                    ) : null}
+                    {(this.state.active !== "lieferschein" && this.state.active !== "bestellung") ? (
                       <Grid.Row>
                         <Grid.Column width={4}>
-                          <Button color="red" style={{ width: "100%" }}>
-                            Löschen
-                          </Button>
                         </Grid.Column>
                         <Grid.Column width={8} />
                         <Grid.Column width={4}>
