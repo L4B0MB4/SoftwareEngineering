@@ -50,8 +50,8 @@ export default class Einkasuf extends Component {
                   <Input placeholder="Name" value="1999" />
                 </Form.Field>
                 <Form.Field>
-                  <label>Preis</label>
-                  <Input placeholder="Name" value="12,35€" />
+                  <label>Anzahl</label>
+                  <Input placeholder="Name" value="3" />
                 </Form.Field>
               </Form.Group>
               <Form.Field>
