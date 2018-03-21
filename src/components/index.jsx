@@ -292,6 +292,10 @@ const PersonalDaten = () => {
           <label>Email</label>
           <input placeholder="Email" type="email" />
         </Form.Field>
+        <Form.Field>
+          <label>Gewerblich</label>
+        <Checkbox label={{ children: 'gewerblich' }} />
+        </Form.Field>
       </Form>
     </Segment>
   );
