@@ -1,11 +1,9 @@
 import fetch from "isomorphic-unfetch";
 import queryString from "query-string";
-import FormData from "form-data";
 
 class Request {
-  constructor(url) {
-    this.url = url;
-    this.cookie = "";
+  constructor() {
+    this.url = "http://localhost:3001";
   }
 
   async callFetch(method, path, body, formencode) {
@@ -13,7 +11,6 @@ class Request {
     const config = {
       method,
       headers: {
-        Cookie: this.cookie,
         "content-type": formencode ? "application/x-www-form-urlencoded" : "application/json"
       }
     };
@@ -26,9 +23,8 @@ class Request {
       customPath = `${path}?${queryString.stringify(body)}`;
     }
     try {
-      const res = await fetch(`${this.url ? this.url : ""}/api${customPath}`, config);
+      const res = await fetch(`${this.url ? this.url : ""}/${customPath}`, config);
       const data = await res.json();
-      this.cookie = this.cookie ? this.cookie : res.headers._headers["set-cookie"];
       return {
         data,
         response: res
@@ -40,7 +36,7 @@ class Request {
   }
 
   insertData(data) {
-    return this.callFetch("POST", "/insert", data);
+    return this.callFetch("POST", "insert", data);
   }
 }
 

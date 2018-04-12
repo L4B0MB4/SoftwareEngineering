@@ -15,6 +15,27 @@ const connect = () => {
   });
 };
 
+const insertData = data =>
+  new Promise((resolve, reject) => {
+    const now = Date.now();
+    db.collection("sedata").save(data, { w: 1 }, resolve);
+  });
+
+const getData = () =>
+  // this is using the same db connection
+  new Promise((resolve, reject) => {
+    db
+      .collection("sedata")
+      .find({})
+      .toArray(function(err, res) {
+        if (err) throw err;
+        let users = res;
+        resolve(users);
+      });
+  });
+
 module.exports = {
-  connect
+  connect,
+  insertData,
+  getData
 };

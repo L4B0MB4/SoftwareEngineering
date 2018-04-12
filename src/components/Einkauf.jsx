@@ -1,13 +1,5 @@
 import React, { Component, Fragment } from "react";
-import {
-  Segment,
-  Statistic,
-  Grid,
-  Form,
-  Input,
-  Button,
-  Divider
-} from "semantic-ui-react";
+import { Segment, Grid, Form, Input, Button, Divider } from "semantic-ui-react";
 
 export default class Einkasuf extends Component {
   render() {

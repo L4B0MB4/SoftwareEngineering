@@ -1,13 +1,5 @@
 import React, { Component, Fragment } from "react";
-import {
-  Segment,
-  Statistic,
-  Grid,
-  Form,
-  Input,
-  Button,
-  Divider
-} from "semantic-ui-react";
+import { Segment, Grid, Form, Input, Button, Divider } from "semantic-ui-react";
 
 export default class Verkauf extends Component {
   render() {
@@ -58,10 +50,10 @@ export default class Verkauf extends Component {
                   <Input placeholder="Name" value="12,35€" />
                 </Form.Field>
               </Form.Group>
-                <Form.Field>
-                  <label>Anzahl</label>
-                  <Input placeholder="Name" value="7" />
-                </Form.Field>
+              <Form.Field>
+                <label>Anzahl</label>
+                <Input placeholder="Name" value="7" />
+              </Form.Field>
               <Form.Field>
                 <div style={{ textAlign: "right" }}>
                   <Button primary>Hinzufügen</Button>

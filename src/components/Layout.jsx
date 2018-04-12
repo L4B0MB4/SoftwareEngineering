@@ -47,9 +47,6 @@ const Header = props => {
         <Menu.Item>
           <Link to="/search">Suche</Link>
         </Menu.Item>
-        <Menu.Item>
-          <Link to="/dialoge">Dialoge</Link>
-        </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>
             <Input icon="search" placeholder="Search..." />
