@@ -15,10 +15,22 @@ const connect = () => {
   });
 };
 
-const insertData = data =>
+const insertData = obj =>
   new Promise((resolve, reject) => {
     const now = Date.now();
-    db.collection("sedata").save(data, { w: 1 }, resolve);
+    db.collection("sedata").findOne({ "data.name": "" + obj.data.name }, {}, (err, res) => {
+      if (err) {
+        reject(err);
+      }
+      if (res !== null) {
+        db.collection("sedata").updateOne({ "data.name": "" + obj.data.name }, obj, (e, r) => {
+          if (e) throw e;
+          resolve(obj);
+        });
+      } else {
+        db.collection("sedata").save(obj, { w: 1 }, resolve);
+      }
+    });
   });
 
 const getData = () =>
