@@ -3,7 +3,7 @@ import { Grid, Segment, Form, Button, Card } from "semantic-ui-react";
 import Request from "./request";
 const request = new Request();
 
-export default class Wein extends Component {
+export default class Wine extends Component {
   wineData = {};
   state = {};
 
@@ -64,8 +64,8 @@ export default class Wein extends Component {
             zIndex: "10000"
           }}>
           <Card.Content>
-            <Card.Header style={{ color: "whitesmoke" }}>Login Fehlgeschlagen</Card.Header>
-            <Card.Description style={{ color: "whitesmoke" }}>Falscher Benutzername oder falsches Passwort</Card.Description>
+            <Card.Header style={{ color: "whitesmoke" }}>Fehler</Card.Header>
+            <Card.Description style={{ color: "whitesmoke" }}>{this.state.errorMessage}</Card.Description>
             <Card.Content extra>
               <br />
               <Button onClick={() => this.setState({ showError: false })}>Schließen</Button>

@@ -45,14 +45,11 @@ const Header = props => {
           <Link to="/">Anlegen</Link>
         </Menu.Item>
         <Menu.Item>
-          <Link to="/search">Suche</Link>
+          <Link to="/listsupplier">Liste Lieferanten</Link>
         </Menu.Item>
-        <Menu.Menu position="right">
-          <Menu.Item>
-            <Input icon="search" placeholder="Search..." />
-          </Menu.Item>
-          <Menu.Item>Abmelden</Menu.Item>
-        </Menu.Menu>
+        <Menu.Item>
+          <Link to="/listwine">Liste Weine</Link>
+        </Menu.Item>
       </Menu>
     </div>
   );

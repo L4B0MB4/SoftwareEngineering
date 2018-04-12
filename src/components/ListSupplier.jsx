@@ -5,10 +5,10 @@ import Request from "./request";
 import _ from "lodash";
 const request = new Request();
 
-class ListWine extends Component {
+class ListSupplier extends Component {
   constructor(props) {
     super(props);
-    this.getWine();
+    this.getSupplier();
     this.state = {};
   }
 
@@ -16,17 +16,17 @@ class ListWine extends Component {
     let res = await request.deleteItemByShortname(shortname);
     if (res.data.success === true) {
       this.setState({ showSuccess: true, successMessage: res.data.message });
-      this.getWine();
+      this.getSupplier();
     } else {
       this.setState({ showError: true, errorMessage: "Ups da ist was schiefgelaufen" });
     }
   };
 
-  getWine = async () => {
+  getSupplier = async () => {
     let res = await request.getAllData();
     let arr = res.data;
-    arr = _.filter(arr, { type: "wine" });
-    this.setState({ wine: arr });
+    arr = _.filter(arr, { type: "supplier" });
+    this.setState({ suppliers: arr });
   };
   render() {
     return (
@@ -34,8 +34,8 @@ class ListWine extends Component {
         {this.successDialog()}
         {this.errorDialog()}
         <Feed size="large">
-          {this.state.wine
-            ? this.state.wine.map(item => (
+          {this.state.suppliers
+            ? this.state.suppliers.map(item => (
                 <Fragment>
                   <Feed.Event style={{ position: "relative" }}>
                     <Feed.Content>
@@ -108,7 +108,6 @@ class ListWine extends Component {
   getValues = item => {
     let arr = [];
     for (var key in item) {
-      // skip loop if the property is from prototype
       if (!item.hasOwnProperty(key)) continue;
 
       var obj = item[key];
@@ -118,4 +117,4 @@ class ListWine extends Component {
   };
 }
 
-export default ListWine;
+export default ListSupplier;
