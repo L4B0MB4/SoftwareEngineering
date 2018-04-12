@@ -3,31 +3,38 @@ import { Grid, Segment, Form, Button, Card } from "semantic-ui-react";
 import Request from "./request";
 const request = new Request();
 
+//Sorgt für Darstellung des Weinformulars
 export default class Wine extends Component {
-  wineData = {};
-  state = {};
+  wineData = {}; // alle Weindaten werden in diesem Objekt gesammelt
+  state = {}; // React-Objekt -> wichtig für updaten des Views
 
+  //Setzt Eigenschaftsschlüssel und -wert der Weindaten
   setWineData = (name, value) => {
     this.wineData[name] = value;
   };
 
+  //sendet wie Weindaten zum Backend
   sendwineData = async () => {
     if (!this.wineData.shortname) {
+      // falls der shortname (id) nicht falsey ist
       this.setState({ showError: true, errorMessage: "Bitte alle Felder ausfüllen!" });
       return;
     }
     let data = {
+      // daten sind vom typ "wein"
       type: "wine",
       data: { ...this.wineData }
     };
-    let res = await request.insertData(data);
+    let res = await request.insertData(data); // warten auf asynchrone Post Funktion
     if (res.data.success === true) {
+      // Setzen von state Eigenschaften für Dialogfenster
       this.setState({ showSuccess: true, successMessage: res.data.message });
     } else {
       this.setState({ showError: true, errorMessage: "Ups da ist was schiefgelaufen" });
     }
   };
 
+  //Kompletter View / DOM-Ersteller
   render() {
     return (
       <Fragment>
@@ -52,6 +59,7 @@ export default class Wine extends Component {
     );
   }
 
+  // zeigt errorDialog an wenn state.showError wahr ist
   errorDialog = () => {
     if (this.state.showError)
       return (
@@ -75,6 +83,7 @@ export default class Wine extends Component {
       );
   };
 
+  // zeigt successDialog an wenn state.showSuccess wahr ist
   successDialog = () => {
     if (this.state.showSuccess) {
       return (
@@ -99,10 +108,11 @@ export default class Wine extends Component {
     }
   };
 
+  // das Formular für Weindaten
   WeinAnlegen = () => {
     return (
       <Segment>
-        <h2> wineData </h2>
+        <h2> Weindaten </h2>
         <Form>
           <Form.Field>
             <label>Name</label>
@@ -132,6 +142,8 @@ export default class Wine extends Component {
       </Segment>
     );
   };
+
+  //Formular für den Hersteller des Weins
   HerstellerWein = () => {
     return (
       <Segment>

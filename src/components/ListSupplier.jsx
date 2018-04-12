@@ -5,6 +5,7 @@ import Request from "./request";
 import _ from "lodash";
 const request = new Request();
 
+//fast exakt wie ListWine -> für Kommentare bitte diese ListWine.jsx anschauen
 class ListSupplier extends Component {
   constructor(props) {
     super(props);

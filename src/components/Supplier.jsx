@@ -3,6 +3,7 @@ import { Grid, Menu, Segment, Form, Button, Dropdown, Checkbox, Card } from "sem
 import Request from "./request";
 const request = new Request();
 
+//fast exakt wie Wine.jsx. Für Kommentare bitte dort nachsehen
 export default class Lieferant extends Component {
   supplierData = {};
   state = {};

@@ -2,19 +2,16 @@ import React, { Component } from "react";
 import { Container, Grid, Menu, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
+//Umschließendes Layout für jede einzelne Seite
 class Layout extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      activeItem: "home"
-    };
   }
 
   render() {
-    const activeItem = this.state.activeItem;
     return (
       <Container style={{ width: "100%" }}>
-        <Header activeItem={activeItem} />
+        <Header />
         <br />
         <br />
         <br />
@@ -33,8 +30,8 @@ class Layout extends Component {
   }
 }
 
-const Header = props => {
-  const { activeItem } = props;
+//Header (auf jeder Seite gleich)
+const Header = () => {
   return (
     <div>
       <Menu inverted fixed="top" size="huge">
