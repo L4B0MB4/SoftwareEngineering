@@ -35,6 +35,19 @@ const insertData = obj =>
     });
   });
 
+const deleteItemByShortname = obj =>
+  new Promise((resolve, reject) => {
+    const now = Date.now();
+    db.collection("sedata").findOne({ "data.shortname": "" + obj.shortname }, {}, (err, res) => {
+      if (err) {
+        resolve({ sucess: false });
+      }
+      if (res !== null) {
+        db.collection("sedata").remove({ "data.shortname": "" + obj.shortname });
+        resolve({ success: true, message: "Löschen Erfolgreich" });
+      }
+    });
+  });
 const getData = () =>
   // this is using the same db connection
   new Promise((resolve, reject) => {
@@ -50,5 +63,6 @@ const getData = () =>
 module.exports = {
   connect,
   insertData,
-  getData
+  getData,
+  deleteItemByShortname
 };

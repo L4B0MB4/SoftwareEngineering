@@ -28,6 +28,13 @@ async function startServer() {
       return res.json(result);
     }
   });
+  exp.post("/delete", async (req, res) => {
+    if (!req.body) return res.json({ success: false });
+    else {
+      let result = await databaseutils.deleteItemByShortname(req.body);
+      return res.json(result);
+    }
+  });
   exp.get("/get", async (req, res) => {
     const result = await databaseutils.getData();
     return res.json(result);

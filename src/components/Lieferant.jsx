@@ -20,7 +20,6 @@ export default class Lieferant extends Component {
       data: { ...this.supplierData }
     };
     let res = await request.insertData(data);
-    console.log(res.data);
     if (res.data.success === true) {
       this.setState({ showSuccess: true, successMessage: res.data.message });
     } else {

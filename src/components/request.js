@@ -41,6 +41,9 @@ class Request {
   getAllData() {
     return this.callFetch("GET", "get");
   }
+  deleteItemByShortname(shortname) {
+    return this.callFetch("Post", "delete", { shortname });
+  }
 }
 
 export default Request;
