@@ -11,13 +11,20 @@ export default class Lieferant extends Component {
     this.supplierData[name] = value;
   };
   sendSupplierData = async () => {
+    if (!this.supplierData.shortname) {
+      this.setState({ showError: true, errorMessage: "Bitte alle Felder ausfüllen!" });
+      return;
+    }
     let data = {
       type: "supplier",
       data: { ...this.supplierData }
     };
     let res = await request.insertData(data);
+    console.log(res.data);
     if (res.data.success === true) {
-      this.setState({ showSuccess: true, successMessage: "Erfolgreich hinzugefügt" });
+      this.setState({ showSuccess: true, successMessage: res.data.message });
+    } else {
+      this.setState({ showError: true, errorMessage: "Ups da ist was schiefgelaufen" });
     }
   };
 
@@ -58,8 +65,8 @@ export default class Lieferant extends Component {
             zIndex: "10000"
           }}>
           <Card.Content>
-            <Card.Header style={{ color: "whitesmoke" }}>Login Fehlgeschlagen</Card.Header>
-            <Card.Description style={{ color: "whitesmoke" }}>Falscher Benutzername oder falsches Passwort</Card.Description>
+            <Card.Header style={{ color: "whitesmoke" }}>Fehler</Card.Header>
+            <Card.Description style={{ color: "whitesmoke" }}>{this.state.errorMessage}</Card.Description>
             <Card.Content extra>
               <br />
               <Button onClick={() => this.setState({ showError: false })}>Schließen</Button>

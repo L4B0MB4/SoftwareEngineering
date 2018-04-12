@@ -22,9 +22,11 @@ async function startServer() {
     return res.json({ message: "hallo" });
   });
   exp.post("/insert", async (req, res) => {
-    if (!req.body) return res.json({ message: "no data" });
-    else databaseutils.insertData(req.body);
-    return res.json({ success: true });
+    if (!req.body) return res.json({ success: false });
+    else {
+      let result = await databaseutils.insertData(req.body);
+      return res.json(result);
+    }
   });
   exp.get("/get", async (req, res) => {
     const result = await databaseutils.getData();

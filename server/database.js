@@ -18,17 +18,19 @@ const connect = () => {
 const insertData = obj =>
   new Promise((resolve, reject) => {
     const now = Date.now();
-    db.collection("sedata").findOne({ "data.name": "" + obj.data.name }, {}, (err, res) => {
+    db.collection("sedata").findOne({ "data.shortname": "" + obj.data.shortname }, {}, (err, res) => {
       if (err) {
-        reject(err);
+        resolve({ sucess: false });
       }
       if (res !== null) {
-        db.collection("sedata").updateOne({ "data.name": "" + obj.data.name }, obj, (e, r) => {
+        db.collection("sedata").updateOne({ "data.shortname": "" + obj.data.shortname }, obj, (e, r) => {
           if (e) throw e;
-          resolve(obj);
+          resolve({ success: true, message: "Update Erfolgreich" });
         });
       } else {
-        db.collection("sedata").save(obj, { w: 1 }, resolve);
+        db.collection("sedata").save(obj, { w: 1 }, () => {
+          resolve({ success: true, message: "Eintrag Erfolgreich" });
+        });
       }
     });
   });

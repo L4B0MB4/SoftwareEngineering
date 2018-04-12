@@ -10,15 +10,21 @@ export default class Wein extends Component {
   setWineData = (name, value) => {
     this.wineData[name] = value;
   };
+
   sendwineData = async () => {
+    if (!this.wineData.shortname) {
+      this.setState({ showError: true, errorMessage: "Bitte alle Felder ausfüllen!" });
+      return;
+    }
     let data = {
       type: "wine",
       data: { ...this.wineData }
     };
     let res = await request.insertData(data);
-    console.log(res.data);
     if (res.data.success === true) {
-      this.setState({ showSuccess: true, successMessage: "Erfolgreich hinzugefügt" });
+      this.setState({ showSuccess: true, successMessage: res.data.message });
+    } else {
+      this.setState({ showError: true, errorMessage: "Ups da ist was schiefgelaufen" });
     }
   };
 
@@ -100,7 +106,7 @@ export default class Wein extends Component {
         <Form>
           <Form.Field>
             <label>Name</label>
-            <input placeholder="Name" onChange={e => this.setWineData("name", e.target.value)} />
+            <input placeholder="Name" onChange={e => this.setWineData("shortname", e.target.value)} />
           </Form.Field>
           <Form.Group widths="equal">
             <Form.Field>
