@@ -29,8 +29,7 @@ const getData = () =>
       .find({})
       .toArray(function(err, res) {
         if (err) throw err;
-        let users = res;
-        resolve(users);
+        resolve(res);
       });
   });
 

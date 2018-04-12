@@ -38,6 +38,9 @@ class Request {
   insertData(data) {
     return this.callFetch("POST", "insert", data);
   }
+  getAllData() {
+    return this.callFetch("GET", "get");
+  }
 }
 
 export default Request;

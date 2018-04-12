@@ -5,7 +5,7 @@ import Request from "./request";
 import _ from "lodash";
 const request = new Request();
 
-class ListSupplier extends Component {
+class ListWine extends Component {
   constructor(props) {
     super(props);
     this.getSupplier();
@@ -15,15 +15,15 @@ class ListSupplier extends Component {
   getSupplier = async () => {
     let res = await request.getAllData();
     let arr = res.data;
-    arr = _.filter(arr, { type: "supplier" });
-    this.setState({ suppliers: arr });
+    arr = _.filter(arr, { type: "wine" });
+    this.setState({ wine: arr });
   };
   render() {
     return (
       <Layout>
         <Feed size="large">
-          {this.state.suppliers
-            ? this.state.suppliers.map(item => (
+          {this.state.wine
+            ? this.state.wine.map(item => (
                 <Fragment>
                   <Feed.Event>
                     <Feed.Content>
@@ -52,4 +52,4 @@ class ListSupplier extends Component {
   };
 }
 
-export default ListSupplier;
+export default ListWine;
