@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Grid, Menu, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-//Umschließendes Layout für jede einzelne Seite
+//Wrapping Layout for each component
 class Layout extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +30,7 @@ class Layout extends Component {
   }
 }
 
-//Header (auf jeder Seite gleich)
+//Header (equal on each site)
 const Header = () => {
   return (
     <div>

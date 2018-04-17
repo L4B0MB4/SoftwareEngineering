@@ -3,6 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
-// Hauptdatei. in ihr wird die komplette App gerendert
+// Main file. Every component will be rendered inside this file
 ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();

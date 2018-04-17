@@ -7,7 +7,7 @@ const exp = express();
 import * as databaseutils from "./database";
 const server = http.createServer(exp);
 
-//Middleware Initialisierung
+//Middleware initializing
 exp.use(bodyParser.json());
 exp.use(bodyParser.urlencoded({ extended: true }));
 exp.use(function(req, res, next) {
@@ -18,12 +18,12 @@ exp.use(function(req, res, next) {
 
 startServer();
 
-//Startet den Server mit den definierten Routen
+//starts the server with the predefined routes
 async function startServer() {
-  const database = await databaseutils.connect(); // wartet asynchron auf Datenbankverbindung
+  const database = await databaseutils.connect(); //waits asynchronous for db connect
 
   exp.post("/insert", async (req, res) => {
-    // localhost:30001/insert nimmt Items entgegen die in die NoSQL DB geschrieben werden sollen
+    // localhost:30001/insert takes data that has to be inserted into DB
     if (!req.body) return res.json({ success: false });
     else {
       let result = await databaseutils.insertData(req.body);
@@ -31,7 +31,7 @@ async function startServer() {
     }
   });
 
-  // localhost:30001/delete nimmt Items entgegen die in der NoSQL DB gelöscht werden sollen
+  // localhost:30001/delete API for deleting data in DB
   exp.post("/delete", async (req, res) => {
     if (!req.body) return res.json({ success: false });
     else {
@@ -40,7 +40,7 @@ async function startServer() {
     }
   });
 
-  // localhost:30001/get schickt alle Items aus der Datenbank zum Client
+  // localhost:30001/get sends all Data from Collection "sedata" to Client
   exp.get("/get", async (req, res) => {
     const result = await databaseutils.getData();
     return res.json(result);

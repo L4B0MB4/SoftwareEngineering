@@ -4,7 +4,7 @@ import ListSupplier from "./components/ListSupplier";
 import ListWine from "./components/ListWine";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-//Ist für das Routing zuständig
+//Is defining the routing
 class App extends Component {
   render() {
     return (

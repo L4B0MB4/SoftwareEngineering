@@ -2,7 +2,7 @@ const mongoUrl = "mongodb://127.0.0.1:27017/local";
 const { MongoClient } = require("mongodb");
 let db;
 
-//verbindet sich mit NOSQL DB
+//connects with MongoDB
 const connect = () => {
   if (db) {
     return Promise.resolve(db);
@@ -16,7 +16,7 @@ const connect = () => {
   });
 };
 
-// schreibt Daten in die Datenbank -- falls Daten mit gleichem shortname schon vorhanden werden diese editiert
+// inserts Data into DB -- if shortname already exists -> update Data
 const insertData = obj =>
   new Promise((resolve, reject) => {
     const now = Date.now();
@@ -37,7 +37,7 @@ const insertData = obj =>
     });
   });
 
-// löscht Daten anhand des "shortname"-Wertes aus der Datenbank
+// deletes Items by shortname of obj
 const deleteItemByShortname = obj =>
   new Promise((resolve, reject) => {
     const now = Date.now();
@@ -52,7 +52,7 @@ const deleteItemByShortname = obj =>
     });
   });
 
-//holt alle Daten aus der Datenbank
+//gets all the Data out of the Collection "sedata"
 const getData = () =>
   new Promise((resolve, reject) => {
     db

@@ -8,11 +8,11 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: "wine" // Momentan ausgewähltes Item
+      active: "wine" // Currently active Item
     };
   }
 
-  //Zeigt je nach angeklicktem Menüitem den dazugehörigen Inhalt an
+  //Shows currently selected Menuitem
   render() {
     return (
       <Layout>
@@ -40,7 +40,7 @@ class Index extends Component {
     );
   }
 
-  //setzt momentan aktives Feld
+  //sets current active Menuitem
   onClick = active => {
     this.setState({ active });
   };

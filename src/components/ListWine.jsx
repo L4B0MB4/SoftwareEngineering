@@ -5,15 +5,15 @@ import Request from "./request";
 import _ from "lodash";
 const request = new Request();
 
-//Zeigt eine Liste aller Weine im System an
+//Lists the available wine
 class ListWine extends Component {
   constructor(props) {
     super(props);
-    this.getWine(); // bekomme Wein über API anfrage
+    this.getWine(); //get Wine of API request
     this.state = {};
   }
 
-  //wenn Löschen-Knopf gedrückt wird eine API-Anfrage gestartet mit dem Wert des "shortname" des Items
+  //if delete button was pressed -> delete Item via shortname
   deleteItemByShortname = async shortname => {
     let res = await request.deleteItemByShortname(shortname);
     if (res.data.success === true) {
@@ -24,14 +24,14 @@ class ListWine extends Component {
     }
   };
 
-  //API Anfrage an das Backend
+  //API Request
   getWine = async () => {
     let res = await request.getAllData();
     let arr = res.data;
     arr = _.filter(arr, { type: "wine" });
     this.setState({ wine: arr });
   };
-  // Listendarstellung der Weine
+  // Listview for wine
   render() {
     return (
       <Layout>
@@ -62,7 +62,7 @@ class ListWine extends Component {
     );
   }
 
-  // zeigt errorDialog an wenn state.showError wahr ist
+  // shows ErrorDialog if state.showError == true
   errorDialog = () => {
     if (this.state.showError)
       return (
@@ -86,7 +86,7 @@ class ListWine extends Component {
       );
   };
 
-  // zeigt successDialog an wenn state.showSuccess wahr ist
+  // shows SuccessDialog if state.showSuccess == true
   successDialog = () => {
     if (this.state.showSuccess) {
       return (
@@ -111,7 +111,7 @@ class ListWine extends Component {
     }
   };
 
-  // Geht durch alle Eigenschaften eines Objekts und listet deren Namen + Wert in einem Array auf
+  // Goes through object and sets an array with {keyname, value} elements
   getValues = item => {
     let arr = [];
     for (var key in item) {

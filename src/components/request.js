@@ -6,16 +6,16 @@ class Request {
     this.url = "http://localhost:3001";
   }
 
-  //x-beliebige API anfrage
+  //API Requesting Function
   async callFetch(method, path, body, formencode) {
     let customPath = path;
     const config = {
       method,
       headers: {
-        "content-type": formencode ? "application/x-www-form-urlencoded" : "application/json" // Anpassen des content-types
+        "content-type": formencode ? "application/x-www-form-urlencoded" : "application/json" // Setting contenttype
       }
     };
-    // Anpassen der übertragenen Daten
+    // Setting data that we want to send
     if (formencode) {
       config.body = queryString.stringify(body);
     } else if (config.method !== "GET") {
@@ -24,7 +24,7 @@ class Request {
       customPath = `${path}?${queryString.stringify(body)}`;
     }
     try {
-      const res = await fetch(`${this.url ? this.url : ""}/${customPath}`, config); // asynchrones Warten auf Antwort der API
+      const res = await fetch(`${this.url ? this.url : ""}/${customPath}`, config); // async wait for answer
       const data = await res.json();
       return {
         data,
@@ -36,7 +36,7 @@ class Request {
     }
   }
 
-  // Funktionen die Schnittstellenanfragen an das Backend starten
+  //possible functions we can use for API calls
 
   insertData(data) {
     return this.callFetch("POST", "insert", data);

@@ -3,38 +3,38 @@ import { Grid, Segment, Form, Button, Card } from "semantic-ui-react";
 import Request from "./request";
 const request = new Request();
 
-//Sorgt für Darstellung des Weinformulars
+//create Winedatasets
 export default class Wine extends Component {
-  wineData = {}; // alle Weindaten werden in diesem Objekt gesammelt
-  state = {}; // React-Objekt -> wichtig für updaten des Views
+  wineData = {}; //object that holds the winedata
+  state = {}; // React-Object -> important for updating the component
 
-  //Setzt Eigenschaftsschlüssel und -wert der Weindaten
+  //sets value by name of key
   setWineData = (name, value) => {
     this.wineData[name] = value;
   };
 
-  //sendet wie Weindaten zum Backend
+  //sends data to backend
   sendwineData = async () => {
     if (!this.wineData.shortname) {
-      // falls der shortname (id) nicht falsey ist
+      // if shortname is not falsey
       this.setState({ showError: true, errorMessage: "Bitte alle Felder ausfüllen!" });
       return;
     }
     let data = {
-      // daten sind vom typ "wein"
+      //data is type "wine"
       type: "wine",
       data: { ...this.wineData }
     };
-    let res = await request.insertData(data); // warten auf asynchrone Post Funktion
+    let res = await request.insertData(data); // waits for postfunction
     if (res.data.success === true) {
-      // Setzen von state Eigenschaften für Dialogfenster
+      // Sets the data of the dialogs
       this.setState({ showSuccess: true, successMessage: res.data.message });
     } else {
       this.setState({ showError: true, errorMessage: "Ups da ist was schiefgelaufen" });
     }
   };
 
-  //Kompletter View / DOM-Ersteller
+  //compelte View / DOM
   render() {
     return (
       <Fragment>
@@ -59,7 +59,7 @@ export default class Wine extends Component {
     );
   }
 
-  // zeigt errorDialog an wenn state.showError wahr ist
+  // if state.showError == true -> show Error Dialog
   errorDialog = () => {
     if (this.state.showError)
       return (
@@ -83,7 +83,7 @@ export default class Wine extends Component {
       );
   };
 
-  // zeigt successDialog an wenn state.showSuccess wahr ist
+  // if state.showSuccess == true -> show Success Dialog
   successDialog = () => {
     if (this.state.showSuccess) {
       return (
@@ -108,7 +108,7 @@ export default class Wine extends Component {
     }
   };
 
-  // das Formular für Weindaten
+  // Form for winedata
   WeinAnlegen = () => {
     return (
       <Segment>
@@ -143,7 +143,7 @@ export default class Wine extends Component {
     );
   };
 
-  //Formular für den Hersteller des Weins
+  //Form for creator of the wine
   HerstellerWein = () => {
     return (
       <Segment>
