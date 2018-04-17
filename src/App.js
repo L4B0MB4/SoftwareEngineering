@@ -6,17 +6,17 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //Is defining the routing
 class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <Route exact path="/listsupplier" component={ListSupplier} />
-          <Route exact path="/listwine" component={ListWine} />
-          <Route exact path="/" component={Index} />
-        </Switch>
-      </Router>
-    );
-  }
+    render() {
+        return (
+            <Router>
+                <Switch>
+                    <Route exact path="/listsupplier" component={ListSupplier} />
+                    <Route exact path="/listwine" component={ListWine} />
+                    <Route exact path="/" component={Index} />
+                </Switch>
+            </Router>
+        );
+    }
 }
 
 export default App;

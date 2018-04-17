@@ -5,45 +5,53 @@ import Wine from "./Wine";
 import Supplier from "./Supplier";
 
 class Index extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: "wine" // Currently active Item
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: "wine" // Currently active Item
+        };
+    }
+
+    //Shows currently selected Menuitem
+    render() {
+        return (
+            <Layout>
+                <Grid>
+                    <Grid.Column width={4}>
+                        <Menu fluid vertical tabular>
+                            <Menu.Item
+                                name="Wein"
+                                active={this.state.active === "wine"}
+                                onClick={() => this.onClick("wine")}
+                            />
+                            <Menu.Item
+                                name="Lieferant"
+                                active={this.state.active === "supplier"}
+                                onClick={() => this.onClick("supplier")}
+                            />
+                        </Menu>
+                    </Grid.Column>
+                    <Grid.Column stretched width={12}>
+                        <Grid>
+                            <Grid.Row>
+                                <Grid.Column width={12}>
+                                    <Grid>
+                                        {this.state.active === "supplier" ? <Supplier /> : null}
+                                        {this.state.active === "wine" ? <Wine /> : null}
+                                    </Grid>
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </Grid.Column>
+                </Grid>
+            </Layout>
+        );
+    }
+
+    //sets current active Menuitem
+    onClick = active => {
+        this.setState({ active });
     };
-  }
-
-  //Shows currently selected Menuitem
-  render() {
-    return (
-      <Layout>
-        <Grid>
-          <Grid.Column width={4}>
-            <Menu fluid vertical tabular>
-              <Menu.Item name="Wein" active={this.state.active === "wine"} onClick={() => this.onClick("wine")} />
-              <Menu.Item name="Lieferant" active={this.state.active === "supplier"} onClick={() => this.onClick("supplier")} />
-            </Menu>
-          </Grid.Column>
-          <Grid.Column stretched width={12}>
-            <Grid>
-              <Grid.Row>
-                <Grid.Column width={12}>
-                  <Grid>
-                    {this.state.active === "supplier" ? <Supplier /> : null}
-                    {this.state.active === "wine" ? <Wine /> : null}
-                  </Grid>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Grid.Column>
-        </Grid>
-      </Layout>
-    );
-  }
-
-  //sets current active Menuitem
-  onClick = active => {
-    this.setState({ active });
-  };
 }
 
 export default Index;
