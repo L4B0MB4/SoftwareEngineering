@@ -5,26 +5,56 @@ const request = new Request();
 
 //nearly the same as Wine so use the comments in Wine.jsx
 export default class Lieferant extends Component {
-    supplierData = {};
+    supplierData = {
+        name: undefined,
+        vorname: undefined,
+        anrede: undefined,
+        alter: undefined,
+        vorwahl: undefined,
+        telefonnummer: undefined,
+        email: undefined,
+        gewerblich: undefined,
+        plz: undefined,
+        ort: undefined,
+        strasse: undefined,
+        lieferantenkuerzel: undefined,
+    };
     state = {};
 
     setsupplierData = (name, value) => {
         this.supplierData[name] = value;
     };
+
+    everyPropertyValue(object) {
+        for (var key in object) {
+            if (!object.hasOwnProperty(key)) continue;
+            if (!object[key] || object[key] == "") return key;
+        }
+        return null;
+    }
+
     sendSupplierData = async () => {
-        if (!this.supplierData.shortname) {
+        if (!this.supplierData.name) {
+            // if name is not falsey
             this.setState({ showError: true, errorMessage: "Bitte alle Felder ausfüllen!" });
             return;
         }
+        let property = this.everyPropertyValue(this.supplierData);
+        if (property) {
+            this.setState({ showError: true, errorMessage: "Bitte Feld mit namen '" + property.toUpperCase() + "' ausfüllen!" });
+            return;
+        }
         let data = {
-            type: "supplier",
+            //data is type "wine"
+            type: "wine",
             data: { ...this.supplierData }
         };
-        let res = await request.insertData(data);
+        let res = await request.insertData(data); // waits for postfunction
         if (res.data.success === true) {
+            // Sets the data of the dialogs
             this.setState({ showSuccess: true, successMessage: res.data.message });
         } else {
-            this.setState({ showError: true, errorMessage: "Ups da ist was schiefgelaufen" });
+            this.setState({ showError: true, errorMessage: res.data.message ? res.data.message : "Ups da ist was schiefgelaufen" });
         }
     };
 
@@ -125,7 +155,7 @@ export default class Lieferant extends Component {
                         <label>Vorname</label>
                         <input
                             placeholder="Vorname"
-                            onChange={e => this.setsupplierData("forename", e.target.value)}
+                            onChange={e => this.setsupplierData("vorname", e.target.value)}
                         />
                     </Form.Field>
                     <Form.Group>
@@ -136,7 +166,7 @@ export default class Lieferant extends Component {
                                 fluid
                                 selection
                                 options={anrede}
-                                onChange={e => this.setsupplierData("salutation", e.target.value)}
+                                onChange={e => this.setsupplierData("anrede", e.target.value)}
                             />
                         </Form.Field>
                         <Form.Field width={10}>
@@ -144,7 +174,7 @@ export default class Lieferant extends Component {
                             <input
                                 placeholder="Alter"
                                 type="number"
-                                onChange={e => this.setsupplierData("age", e.target.value)}
+                                onChange={e => this.setsupplierData("alter", e.target.value)}
                             />
                         </Form.Field>
                     </Form.Group>
@@ -153,14 +183,14 @@ export default class Lieferant extends Component {
                             <label>Tel. Vorwahl</label>
                             <input
                                 placeholder="Vorwahl"
-                                onChange={e => this.setsupplierData("prefix", e.target.value)}
+                                onChange={e => this.setsupplierData("vorwahl", e.target.value)}
                             />
                         </Form.Field>
                         <Form.Field width={10}>
                             <label>Telefonnummer</label>
                             <input
                                 placeholder="Telefonnummer"
-                                onChange={e => this.setsupplierData("phoneNumber", e.target.value)}
+                                onChange={e => this.setsupplierData("telefonnummer", e.target.value)}
                             />
                         </Form.Field>
                     </Form.Group>
@@ -176,7 +206,7 @@ export default class Lieferant extends Component {
                         <label>Gewerblich</label>
                         <Checkbox
                             label={{ children: "gewerblich" }}
-                            onChange={e => this.setsupplierData("commercial", e.target.value)}
+                            onChange={e => this.setsupplierData("gewerblich", e.target.value)}
                         />
                     </Form.Field>
                 </Form>
@@ -195,14 +225,14 @@ export default class Lieferant extends Component {
                             <input
                                 placeholder="PLZ"
                                 type="number"
-                                onChange={e => this.setsupplierData("postcode", e.target.value)}
+                                onChange={e => this.setsupplierData("plz", e.target.value)}
                             />
                         </Form.Field>
                         <Form.Field width={10}>
                             <label>Ort</label>
                             <input
                                 placeholder="Ort"
-                                onChange={e => this.setsupplierData("city", e.target.value)}
+                                onChange={e => this.setsupplierData("ort", e.target.value)}
                             />
                         </Form.Field>
                     </Form.Group>
@@ -210,7 +240,7 @@ export default class Lieferant extends Component {
                         <label>Straße und Hausnummer</label>
                         <input
                             placeholder="Straße und Hausnummer"
-                            onChange={e => this.setsupplierData("street", e.target.value)}
+                            onChange={e => this.setsupplierData("strasse", e.target.value)}
                         />
                     </Form.Field>
                 </Form>
@@ -227,7 +257,7 @@ export default class Lieferant extends Component {
                         <label>Lieferantenkürzel</label>
                         <input
                             placeholder="Lieferantenkürzel"
-                            onChange={e => this.setsupplierData("shortname", e.target.value)}
+                            onChange={e => this.setsupplierData("lieferantenkuerzel", e.target.value)}
                         />
                     </Form.Field>
                 </Form>

@@ -34,7 +34,12 @@ class Request {
             };
         } catch (err) {
             console.log(err);
-            return err;
+            return {
+                data: {
+                    success: "false",
+                    message: "Anfrage an Server fehlgeschlagen"
+                }
+            }
         }
     }
 
@@ -46,8 +51,8 @@ class Request {
     getAllData() {
         return this.callFetch("GET", "get");
     }
-    deleteItemByShortname(shortname) {
-        return this.callFetch("Post", "delete", { shortname });
+    deleteItemByname(name) {
+        return this.callFetch("Post", "delete", { name });
     }
 }
 

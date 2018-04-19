@@ -13,14 +13,14 @@ class ListWine extends Component {
         this.state = {};
     }
 
-    //if delete button was pressed -> delete Item via shortname
-    deleteItemByShortname = async shortname => {
-        let res = await request.deleteItemByShortname(shortname);
+    //if delete button was pressed -> delete Item via name
+    deleteItemByname = async name => {
+        let res = await request.deleteItemByname(name);
         if (res.data.success === true) {
             this.setState({ showSuccess: true, successMessage: res.data.message });
             this.getWine();
         } else {
-            this.setState({ showError: true, errorMessage: "Ups da ist was schiefgelaufen" });
+            this.setState({ showError: true, errorMessage: res.data.message ? res.data.message : "Ups da ist was schiefgelaufen" });
         }
     };
 
@@ -40,34 +40,34 @@ class ListWine extends Component {
                 <Feed size="large">
                     {this.state.wine
                         ? this.state.wine.map(item => (
-                              <Fragment>
-                                  <Feed.Event style={{ position: "relative" }}>
-                                      <Feed.Content>
-                                          <Feed.Summary>
-                                              {this.getValues(item.data).map(i => (
-                                                  <p>{i.name + ": " + i.value}</p>
-                                              ))}
-                                          </Feed.Summary>
-                                          <div>
-                                              <Icon
-                                                  name="delete"
-                                                  onClick={() =>
-                                                      this.deleteItemByShortname(
-                                                          item.data.shortname
-                                                      )
-                                                  }
-                                                  style={{
-                                                      position: "absolute",
-                                                      top: "0px",
-                                                      right: "10px"
-                                                  }}
-                                              />
-                                          </div>
-                                      </Feed.Content>
-                                  </Feed.Event>
-                                  <Divider />
-                              </Fragment>
-                          ))
+                            <Fragment>
+                                <Feed.Event style={{ position: "relative" }}>
+                                    <Feed.Content>
+                                        <Feed.Summary>
+                                            {this.getValues(item.data).map(i => (
+                                                <p>{i.name + ": " + i.value}</p>
+                                            ))}
+                                        </Feed.Summary>
+                                        <div>
+                                            <Icon
+                                                name="delete"
+                                                onClick={() =>
+                                                    this.deleteItemByname(
+                                                        item.data.name
+                                                    )
+                                                }
+                                                style={{
+                                                    position: "absolute",
+                                                    top: "0px",
+                                                    right: "10px"
+                                                }}
+                                            />
+                                        </div>
+                                    </Feed.Content>
+                                </Feed.Event>
+                                <Divider />
+                            </Fragment>
+                        ))
                         : null}
                 </Feed>
             </Layout>

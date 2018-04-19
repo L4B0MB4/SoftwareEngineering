@@ -16,20 +16,20 @@ const connect = () => {
     });
 };
 
-// inserts Data into DB -- if shortname already exists -> update Data
+// inserts Data into DB -- if name already exists -> update Data
 const insertData = obj =>
     new Promise((resolve, reject) => {
         const now = Date.now();
         db
             .collection("sedata")
-            .findOne({ "data.shortname": "" + obj.data.shortname }, {}, (err, res) => {
+            .findOne({ "data.name": "" + obj.data.name }, {}, (err, res) => {
                 if (err) {
                     resolve({ sucess: false });
                 }
                 if (res !== null) {
                     db
                         .collection("sedata")
-                        .updateOne({ "data.shortname": "" + obj.data.shortname }, obj, (e, r) => {
+                        .updateOne({ "data.name": "" + obj.data.name }, obj, (e, r) => {
                             if (e) throw e;
                             resolve({ success: true, message: "Update Erfolgreich" });
                         });
@@ -41,18 +41,18 @@ const insertData = obj =>
             });
     });
 
-// deletes Items by shortname of obj
-const deleteItemByShortname = obj =>
+// deletes Items by name of obj
+const deleteItemByname = obj =>
     new Promise((resolve, reject) => {
         const now = Date.now();
         db
             .collection("sedata")
-            .findOne({ "data.shortname": "" + obj.shortname }, {}, (err, res) => {
+            .findOne({ "data.name": "" + obj.name }, {}, (err, res) => {
                 if (err) {
                     resolve({ sucess: false });
                 }
                 if (res !== null) {
-                    db.collection("sedata").remove({ "data.shortname": "" + obj.shortname });
+                    db.collection("sedata").remove({ "data.name": "" + obj.name });
                     resolve({ success: true, message: "Löschen Erfolgreich" });
                 }
             });
@@ -74,5 +74,5 @@ module.exports = {
     connect,
     insertData,
     getData,
-    deleteItemByShortname
+    deleteItemByname
 };

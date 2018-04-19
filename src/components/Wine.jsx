@@ -5,7 +5,15 @@ const request = new Request();
 
 //create Winedatasets
 export default class Wine extends Component {
-    wineData = {}; //object that holds the winedata
+    wineData = {
+        name: undefined,
+        jahrgang: undefined,
+        herkunft: undefined,
+        alkoholgehalt: undefined,
+        preis: undefined,
+        herstellername: undefined,
+
+    }; //object that holds the winedata
     state = {}; // React-Object -> important for updating the component
 
     //sets value by name of key
@@ -13,11 +21,24 @@ export default class Wine extends Component {
         this.wineData[name] = value;
     };
 
+    everyPropertyValue(object) {
+        for (var key in object) {
+            if (!object.hasOwnProperty(key)) continue;
+            if (!object[key] || object[key] == "") return key;
+        }
+        return null;
+    }
+
     //sends data to backend
     sendwineData = async () => {
-        if (!this.wineData.shortname) {
-            // if shortname is not falsey
+        if (!this.wineData.name) {
+            // if name is not falsey
             this.setState({ showError: true, errorMessage: "Bitte alle Felder ausfüllen!" });
+            return;
+        }
+        let property = this.everyPropertyValue(this.wineData);
+        if (property) {
+            this.setState({ showError: true, errorMessage: "Bitte Feld mit namen '" + property.toUpperCase() + "' ausfüllen!" });
             return;
         }
         let data = {
@@ -30,7 +51,7 @@ export default class Wine extends Component {
             // Sets the data of the dialogs
             this.setState({ showSuccess: true, successMessage: res.data.message });
         } else {
-            this.setState({ showError: true, errorMessage: "Ups da ist was schiefgelaufen" });
+            this.setState({ showError: true, errorMessage: res.data.message ? res.data.message : "Ups da ist was schiefgelaufen" });
         }
     };
 
@@ -126,7 +147,7 @@ export default class Wine extends Component {
                         <label>Name</label>
                         <input
                             placeholder="Name"
-                            onChange={e => this.setWineData("shortname", e.target.value)}
+                            onChange={e => this.setWineData("name", e.target.value)}
                         />
                     </Form.Field>
                     <Form.Group widths="equal">
