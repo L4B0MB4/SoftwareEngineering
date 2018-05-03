@@ -46,7 +46,7 @@ export default class Lieferant extends Component {
         }
         let data = {
             //data is type "wine"
-            type: "wine",
+            type: "supplier",
             data: { ...this.supplierData }
         };
         let res = await request.insertData(data); // waits for postfunction
@@ -161,11 +161,9 @@ export default class Lieferant extends Component {
                     <Form.Group>
                         <Form.Field width={6}>
                             <label>Anrede</label>
-                            <Dropdown
+                            <input
                                 placeholder="Anrede"
-                                fluid
-                                selection
-                                options={anrede}
+                                type="text"
                                 onChange={e => this.setsupplierData("anrede", e.target.value)}
                             />
                         </Form.Field>
